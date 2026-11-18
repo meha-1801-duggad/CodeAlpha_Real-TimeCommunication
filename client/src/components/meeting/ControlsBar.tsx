@@ -14,7 +14,6 @@ import {
   PhoneOff,
   CircleDot,
   Settings,
-  ShieldCheck,
 } from 'lucide-react';
 
 interface ControlsBarProps {
@@ -74,33 +73,32 @@ export const ControlsBar: React.FC<ControlsBarProps> = ({
     <div className="relative z-30 px-4 py-3 flex items-center justify-between pointer-events-none select-none">
       {/* Left: Meeting Status Badges */}
       <div className="hidden sm:flex items-center gap-2.5 pointer-events-auto">
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-obsidian-850/90 border border-white/[0.08] backdrop-blur-xl shadow-lg">
-          <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-xs font-semibold tracking-wide text-obsidian-100">Live Encrypted</span>
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 border border-pearl-200/90 backdrop-blur-xl shadow-sm">
+          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="text-xs font-bold text-pearl-800">Live Encrypted</span>
         </div>
 
         {isRecording && (
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/30 backdrop-blur-xl shadow-lg animate-pulse">
-            <span className="w-2 h-2 rounded-full bg-rose-500" />
-            <span className="text-xs font-mono font-semibold text-rose-400">REC {recordingTime}</span>
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-50 border border-rose-200 backdrop-blur-xl shadow-sm animate-pulse">
+            <span className="w-2 h-2 rounded-full bg-rose-600" />
+            <span className="text-xs font-mono font-bold text-rose-700">REC {recordingTime}</span>
           </div>
         )}
       </div>
 
-      {/* Center: Main Floating Ergonomic Dock */}
-      <div className="mx-auto flex items-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl glass-dock pointer-events-auto shadow-dock transition-all">
+      {/* Center: Main Floating Light Dock */}
+      <div className="mx-auto flex items-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl glass-dock shadow-dock pointer-events-auto transition-all">
         {/* Microphone Toggle */}
         <button
           onClick={onToggleMic}
           className={`group relative p-3 sm:p-3.5 rounded-xl sm:rounded-2xl transition-all duration-200 active:scale-95 ${
             isMuted
-              ? 'bg-rose-500/15 text-rose-400 hover:bg-rose-500/25 border border-rose-500/30 shadow-inner'
-              : 'bg-obsidian-750/80 hover:bg-obsidian-700 text-obsidian-100 border border-white/[0.06] hover:border-white/[0.12]'
+              ? 'bg-rose-50 text-rose-600 hover:bg-rose-100 border border-rose-200 shadow-xs'
+              : 'bg-pearl-100 hover:bg-pearl-200 text-pearl-800 border border-pearl-200 shadow-xs'
           }`}
           title={isMuted ? 'Unmute (M)' : 'Mute (M)'}
         >
-          {isMuted ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5 text-emerald-400" />}
-          <span className="sr-only">Toggle Mic</span>
+          {isMuted ? <MicOff className="w-5 h-5 text-rose-600" /> : <Mic className="w-5 h-5 text-emerald-600" />}
         </button>
 
         {/* Camera Toggle */}
@@ -108,24 +106,23 @@ export const ControlsBar: React.FC<ControlsBarProps> = ({
           onClick={onToggleVideo}
           className={`group relative p-3 sm:p-3.5 rounded-xl sm:rounded-2xl transition-all duration-200 active:scale-95 ${
             isVideoOff
-              ? 'bg-rose-500/15 text-rose-400 hover:bg-rose-500/25 border border-rose-500/30 shadow-inner'
-              : 'bg-obsidian-750/80 hover:bg-obsidian-700 text-obsidian-100 border border-white/[0.06] hover:border-white/[0.12]'
+              ? 'bg-rose-50 text-rose-600 hover:bg-rose-100 border border-rose-200 shadow-xs'
+              : 'bg-pearl-100 hover:bg-pearl-200 text-pearl-800 border border-pearl-200 shadow-xs'
           }`}
           title={isVideoOff ? 'Start Camera (V)' : 'Stop Camera (V)'}
         >
-          {isVideoOff ? <VideoOff className="w-5 h-5" /> : <Video className="w-5 h-5 text-emerald-400" />}
-          <span className="sr-only">Toggle Camera</span>
+          {isVideoOff ? <VideoOff className="w-5 h-5 text-rose-600" /> : <Video className="w-5 h-5 text-emerald-600" />}
         </button>
 
-        <div className="w-[1px] h-6 bg-white/[0.08] mx-0.5 sm:mx-1" />
+        <div className="w-[1px] h-6 bg-pearl-200 mx-0.5 sm:mx-1" />
 
         {/* Screen Share Toggle */}
         <button
           onClick={onToggleScreenShare}
           className={`p-3 sm:p-3.5 rounded-xl sm:rounded-2xl transition-all duration-200 active:scale-95 ${
             isScreenSharing
-              ? 'bg-brand-600 text-white shadow-lg shadow-brand-500/30 border border-brand-400/30'
-              : 'bg-obsidian-750/80 hover:bg-obsidian-700 text-obsidian-200 hover:text-white border border-white/[0.06]'
+              ? 'bg-brand-600 text-white shadow-md shadow-brand-500/25 border border-brand-500'
+              : 'bg-pearl-100 hover:bg-pearl-200 text-pearl-700 border border-pearl-200 shadow-xs'
           }`}
           title={isScreenSharing ? 'Stop Sharing (D)' : 'Share Screen (D)'}
         >
@@ -137,8 +134,8 @@ export const ControlsBar: React.FC<ControlsBarProps> = ({
           onClick={onToggleWhiteboard}
           className={`p-3 sm:p-3.5 rounded-xl sm:rounded-2xl transition-all duration-200 active:scale-95 ${
             isWhiteboardOpen
-              ? 'bg-brand-600 text-white shadow-lg shadow-brand-500/30 border border-brand-400/30'
-              : 'bg-obsidian-750/80 hover:bg-obsidian-700 text-obsidian-200 hover:text-white border border-white/[0.06]'
+              ? 'bg-brand-600 text-white shadow-md shadow-brand-500/25 border border-brand-500'
+              : 'bg-pearl-100 hover:bg-pearl-200 text-pearl-700 border border-pearl-200 shadow-xs'
           }`}
           title="Collaborative Whiteboard"
         >
@@ -151,8 +148,8 @@ export const ControlsBar: React.FC<ControlsBarProps> = ({
             onClick={() => setShowReactions((prev) => !prev)}
             className={`p-3 sm:p-3.5 rounded-xl sm:rounded-2xl transition-all duration-200 active:scale-95 ${
               showReactions
-                ? 'bg-obsidian-700 text-white border border-white/20'
-                : 'bg-obsidian-750/80 hover:bg-obsidian-700 text-obsidian-200 hover:text-white border border-white/[0.06]'
+                ? 'bg-pearl-200 text-pearl-900 border border-pearl-300'
+                : 'bg-pearl-100 hover:bg-pearl-200 text-pearl-700 border border-pearl-200 shadow-xs'
             }`}
             title="Reactions"
           >
@@ -160,7 +157,7 @@ export const ControlsBar: React.FC<ControlsBarProps> = ({
           </button>
 
           {showReactions && (
-            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex items-center gap-1.5 p-2 rounded-2xl glass-panel shadow-2xl z-40 animate-slide-up">
+            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex items-center gap-1.5 p-2 rounded-2xl bg-white border border-pearl-200 shadow-xl z-40 animate-slide-up">
               {REACTION_EMOJIS.map((emoji) => (
                 <button
                   key={emoji}
@@ -168,7 +165,7 @@ export const ControlsBar: React.FC<ControlsBarProps> = ({
                     onSendReaction(emoji);
                     setShowReactions(false);
                   }}
-                  className="p-2 text-xl hover:scale-125 transition-transform rounded-xl hover:bg-white/[0.08]"
+                  className="p-2 text-xl hover:scale-125 transition-transform rounded-xl hover:bg-pearl-100"
                 >
                   {emoji}
                 </button>
@@ -182,8 +179,8 @@ export const ControlsBar: React.FC<ControlsBarProps> = ({
           onClick={onToggleHand}
           className={`p-3 sm:p-3.5 rounded-xl sm:rounded-2xl transition-all duration-200 active:scale-95 ${
             isHandRaised
-              ? 'bg-amber-400 text-obsidian-950 font-bold shadow-lg shadow-amber-400/30 border border-amber-300'
-              : 'bg-obsidian-750/80 hover:bg-obsidian-700 text-obsidian-200 hover:text-white border border-white/[0.06]'
+              ? 'bg-amber-400 text-amber-950 font-bold shadow-md shadow-amber-400/25 border border-amber-300'
+              : 'bg-pearl-100 hover:bg-pearl-200 text-pearl-700 border border-pearl-200 shadow-xs'
           }`}
           title={isHandRaised ? 'Lower Hand (H)' : 'Raise Hand (H)'}
         >
@@ -195,42 +192,42 @@ export const ControlsBar: React.FC<ControlsBarProps> = ({
           onClick={onToggleRecording}
           className={`p-3 sm:p-3.5 rounded-xl sm:rounded-2xl transition-all duration-200 active:scale-95 ${
             isRecording
-              ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/40 border border-rose-400'
-              : 'bg-obsidian-750/80 hover:bg-obsidian-700 text-obsidian-200 hover:text-white border border-white/[0.06]'
+              ? 'bg-rose-600 text-white shadow-md shadow-rose-600/25 border border-rose-500'
+              : 'bg-pearl-100 hover:bg-pearl-200 text-pearl-700 border border-pearl-200 shadow-xs'
           }`}
           title={isRecording ? 'Stop Recording' : 'Record Session Locally'}
         >
           <CircleDot className="w-5 h-5" />
         </button>
 
-        <div className="w-[1px] h-6 bg-white/[0.08] mx-0.5 sm:mx-1" />
+        <div className="w-[1px] h-6 bg-pearl-200 mx-0.5 sm:mx-1" />
 
         {/* End Call Button */}
         <button
           onClick={onLeaveMeeting}
-          className="px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl bg-rose-600 hover:bg-rose-500 text-white font-semibold text-sm transition-all duration-200 flex items-center gap-2 shadow-lg shadow-rose-600/30 active:scale-95 border border-rose-400/30"
+          className="px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm transition-all duration-200 flex items-center gap-2 shadow-md shadow-rose-600/20 active:scale-95 border border-rose-500"
           title="Leave Meeting"
         >
           <PhoneOff className="w-4 h-4 sm:w-5 sm:h-5" />
-          <span className="hidden md:inline font-semibold">End</span>
+          <span className="hidden md:inline font-bold">End</span>
         </button>
       </div>
 
-      {/* Right: Drawer Toggles (Chat, Participants, Settings) */}
+      {/* Right: Drawer Toggles */}
       <div className="flex items-center gap-2 pointer-events-auto">
         {/* Chat Drawer Toggle */}
         <button
           onClick={onToggleChat}
           className={`relative p-3 rounded-2xl transition-all active:scale-95 ${
             isChatOpen
-              ? 'bg-brand-600 text-white shadow-lg shadow-brand-500/25 border border-brand-400/30'
-              : 'glass-panel text-obsidian-200 hover:text-white hover:bg-obsidian-700/80'
+              ? 'bg-brand-600 text-white shadow-md shadow-brand-500/20 border border-brand-500'
+              : 'bg-white hover:bg-pearl-100 text-pearl-700 border border-pearl-200 shadow-xs'
           }`}
           title="Meeting Chat"
         >
           <MessageSquare className="w-4 h-4" />
           {unreadCount > 0 && !isChatOpen && (
-            <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-brand-500 text-white text-[10px] font-bold flex items-center justify-center ring-2 ring-obsidian-950 shadow-md">
+            <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-brand-600 text-white text-[10px] font-bold flex items-center justify-center ring-2 ring-white shadow-sm">
               {unreadCount > 9 ? '9+' : unreadCount}
             </span>
           )}
@@ -241,13 +238,13 @@ export const ControlsBar: React.FC<ControlsBarProps> = ({
           onClick={onToggleParticipants}
           className={`relative p-3 rounded-2xl transition-all active:scale-95 ${
             isParticipantsOpen
-              ? 'bg-brand-600 text-white shadow-lg shadow-brand-500/25 border border-brand-400/30'
-              : 'glass-panel text-obsidian-200 hover:text-white hover:bg-obsidian-700/80'
+              ? 'bg-brand-600 text-white shadow-md shadow-brand-500/20 border border-brand-500'
+              : 'bg-white hover:bg-pearl-100 text-pearl-700 border border-pearl-200 shadow-xs'
           }`}
           title="Participants"
         >
           <Users className="w-4 h-4" />
-          <span className="absolute -top-1 -right-1 px-1.5 py-0.2 rounded-full bg-obsidian-750 text-obsidian-200 border border-white/[0.08] text-[10px] font-mono font-semibold ring-2 ring-obsidian-950">
+          <span className="absolute -top-1 -right-1 px-1.5 py-0.2 rounded-full bg-pearl-200 text-pearl-800 text-[10px] font-mono font-bold ring-2 ring-white">
             {participantCount}
           </span>
         </button>
@@ -255,7 +252,7 @@ export const ControlsBar: React.FC<ControlsBarProps> = ({
         {/* Hardware Settings Modal */}
         <button
           onClick={onOpenSettings}
-          className="p-3 rounded-2xl glass-panel text-obsidian-200 hover:text-white hover:bg-obsidian-700/80 transition-all active:scale-95"
+          className="p-3 rounded-2xl bg-white hover:bg-pearl-100 text-pearl-700 border border-pearl-200 shadow-xs transition-all active:scale-95"
           title="Hardware Settings"
         >
           <Settings className="w-4 h-4" />

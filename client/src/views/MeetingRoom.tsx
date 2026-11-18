@@ -430,33 +430,33 @@ export const MeetingRoom: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen w-screen bg-obsidian-950 text-obsidian-100 overflow-hidden select-none bg-radial-mesh">
+    <div className="flex flex-col h-screen w-screen bg-ambient-light bg-pearl-50 text-pearl-900 overflow-hidden select-none">
       {/* Top Header Bar */}
-      <header className="flex items-center justify-between px-6 py-3.5 bg-obsidian-950/70 backdrop-blur-2xl border-b border-white/[0.06] z-20">
+      <header className="flex items-center justify-between px-6 py-3.5 bg-white/85 backdrop-blur-xl border-b border-pearl-200/90 z-20 shadow-xs">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-brand-600 to-sky-500 flex items-center justify-center font-black text-white shadow-lg shadow-brand-500/20 border border-white/20">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-brand-600 to-sky-500 flex items-center justify-center font-black text-white shadow-md shadow-brand-500/20">
               N
             </div>
-            <span className="font-extrabold text-white text-base tracking-tight">NexusMeet</span>
+            <span className="font-extrabold text-pearl-900 text-base tracking-tight">NexusMeet</span>
           </div>
 
-          <div className="h-4 w-[1px] bg-white/[0.1] mx-1 hidden sm:block" />
+          <div className="h-4 w-[1px] bg-pearl-200 mx-1 hidden sm:block" />
 
           {/* Meeting Room Code Pill */}
           <button
             onClick={handleCopyLink}
-            className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-obsidian-850/80 hover:bg-obsidian-800 border border-white/[0.08] text-xs font-mono text-obsidian-200 transition-all active:scale-95 shadow-sm"
+            className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pearl-100 hover:bg-pearl-200 border border-pearl-200 text-xs font-mono font-bold text-pearl-800 transition-all active:scale-95 shadow-2xs"
             title="Click to copy invite link"
           >
             <span>{code}</span>
-            {linkCopied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-obsidian-400" />}
+            {linkCopied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-pearl-500" />}
           </button>
         </div>
 
         {/* Security Indicator */}
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold shadow-2xs">
             <ShieldCheck className="w-3.5 h-3.5" />
             <span className="hidden md:inline">DTLS-SRTP Protected</span>
           </div>
