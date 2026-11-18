@@ -65,31 +65,31 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
   };
 
   return (
-    <div className="flex flex-col h-full w-full bg-slate-900 border-l border-slate-800 shadow-2xl">
+    <div className="flex flex-col h-full w-full glass-panel border-l border-white/[0.08] shadow-2xl overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-slate-800 bg-slate-900/80 backdrop-blur-md">
+      <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.06] bg-obsidian-900/60 backdrop-blur-xl">
         <div>
-          <h3 className="font-semibold text-white text-base">In-Call Messages</h3>
-          <p className="text-xs text-slate-400">Encrypted real-time channel</p>
+          <h3 className="font-bold text-white text-sm tracking-wide">In-Call Messages</h3>
+          <p className="text-[11px] text-obsidian-400">Encrypted real-time channel</p>
         </div>
         <button
           onClick={onClose}
-          className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+          className="p-2 rounded-xl text-obsidian-400 hover:text-white hover:bg-white/[0.06] transition-colors"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
       </div>
 
       {/* Messages List */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-full text-center text-slate-400 py-12">
-            <div className="w-12 h-12 rounded-2xl bg-slate-800 flex items-center justify-center mb-3 text-slate-400">
+          <div className="flex flex-col items-center justify-center h-full text-center text-obsidian-400 py-12">
+            <div className="w-12 h-12 rounded-2xl bg-obsidian-800/80 border border-white/[0.06] flex items-center justify-center mb-3 text-xl">
               💬
             </div>
-            <p className="text-sm font-medium">No messages yet</p>
-            <p className="text-xs text-slate-400 max-w-xs mt-1">
-              Send a note, share a file, or drop a quick emoji to all meeting participants.
+            <p className="text-sm font-semibold text-obsidian-200">No messages yet</p>
+            <p className="text-xs text-obsidian-400 max-w-xs mt-1">
+              Send a note, attach a file, or drop a quick emoji to all meeting attendees.
             </p>
           </div>
         ) : (
@@ -97,7 +97,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
             if (msg.isSystem) {
               return (
                 <div key={msg.id} className="text-center my-2">
-                  <span className="text-[11px] font-medium text-slate-400 bg-slate-800/80 px-3 py-1 rounded-full border border-slate-700/50">
+                  <span className="text-[11px] font-semibold text-obsidian-400 bg-obsidian-800/60 px-3 py-1 rounded-full border border-white/[0.06]">
                     {msg.text}
                   </span>
                 </div>
@@ -115,22 +115,22 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
                   {!isMe && (
                     <div
                       className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-white uppercase"
-                      style={{ backgroundColor: msg.senderAvatar || '#6366f1' }}
+                      style={{ backgroundColor: msg.senderAvatar || '#6366F1' }}
                     >
                       {msg.senderName.charAt(0)}
                     </div>
                   )}
-                  <span className="text-xs font-semibold text-slate-300">
+                  <span className="text-xs font-semibold text-obsidian-300">
                     {isMe ? 'You' : msg.senderName}
                   </span>
-                  <span className="text-[10px] text-slate-400">{formatTime(msg.timestamp)}</span>
+                  <span className="text-[10px] text-obsidian-500 font-mono">{formatTime(msg.timestamp)}</span>
                 </div>
 
                 <div
                   className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm shadow-sm ${
                     isMe
-                      ? 'bg-brand-600 text-white rounded-tr-xs'
-                      : 'bg-slate-800 text-slate-100 border border-slate-700/60 rounded-tl-xs'
+                      ? 'bg-brand-600 text-white rounded-tr-none shadow-brand-500/20'
+                      : 'bg-obsidian-800 text-obsidian-100 border border-white/[0.06] rounded-tl-none'
                   }`}
                 >
                   {msg.text && <p className="leading-relaxed whitespace-pre-wrap break-words">{msg.text}</p>}
@@ -139,7 +139,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
                   {msg.file && (
                     <div className="mt-2.5 pt-2 border-t border-white/10">
                       {msg.file.type.startsWith('image/') && msg.file.dataUrl ? (
-                        <div className="mb-2 rounded-lg overflow-hidden border border-white/20">
+                        <div className="mb-2 rounded-xl overflow-hidden border border-white/20">
                           <img
                             src={msg.file.dataUrl}
                             alt={msg.file.name}
@@ -148,16 +148,16 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
                         </div>
                       ) : null}
 
-                      <div className="flex items-center justify-between gap-3 p-2 rounded-lg bg-black/20 backdrop-blur-sm">
+                      <div className="flex items-center justify-between gap-3 p-2 rounded-xl bg-black/25 backdrop-blur-sm border border-white/[0.08]">
                         <div className="flex items-center gap-2 overflow-hidden">
                           {msg.file.type.startsWith('image/') ? (
                             <Image className="w-5 h-5 flex-shrink-0 text-amber-400" />
                           ) : (
-                            <FileText className="w-5 h-5 flex-shrink-0 text-blue-400" />
+                            <FileText className="w-5 h-5 flex-shrink-0 text-sky-400" />
                           )}
                           <div className="overflow-hidden">
-                            <p className="text-xs font-medium truncate">{msg.file.name}</p>
-                            <p className="text-[10px] text-slate-400">{formatFileSize(msg.file.size)}</p>
+                            <p className="text-xs font-semibold truncate text-white">{msg.file.name}</p>
+                            <p className="text-[10px] text-obsidian-400 font-mono">{formatFileSize(msg.file.size)}</p>
                           </div>
                         </div>
 
@@ -165,7 +165,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
                           <a
                             href={msg.file.dataUrl}
                             download={msg.file.name}
-                            className="p-1.5 rounded-md hover:bg-white/10 text-white transition-colors"
+                            className="p-1.5 rounded-lg hover:bg-white/10 text-white transition-colors"
                             title="Download file"
                           >
                             <Download className="w-4 h-4" />
@@ -184,7 +184,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
 
       {/* Quick Emojis Bar */}
       {showEmojiPicker && (
-        <div className="px-4 py-2 bg-slate-800/90 border-t border-slate-700/60 flex items-center gap-2 overflow-x-auto">
+        <div className="px-4 py-2 bg-obsidian-850/95 border-t border-white/[0.06] flex items-center gap-2 overflow-x-auto">
           {QUICK_EMOJIS.map((emoji) => (
             <button
               key={emoji}
@@ -192,7 +192,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
                 setInputText((prev) => prev + emoji);
                 setShowEmojiPicker(false);
               }}
-              className="text-lg hover:scale-125 transition-transform p-1 rounded-md hover:bg-slate-700"
+              className="text-lg hover:scale-125 transition-transform p-1 rounded-lg hover:bg-white/[0.08]"
             >
               {emoji}
             </button>
@@ -201,7 +201,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
       )}
 
       {/* Input Form */}
-      <form onSubmit={handleSendMessage} className="p-3 border-t border-slate-800 bg-slate-900/90">
+      <form onSubmit={handleSendMessage} className="p-3 border-t border-white/[0.06] bg-obsidian-950/60">
         <input
           ref={fileInputRef}
           type="file"
@@ -209,12 +209,12 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
           className="hidden"
         />
 
-        <div className="flex items-center gap-2 bg-slate-800/80 rounded-xl px-3 py-1.5 border border-slate-700/60 focus-within:border-brand-500 transition-colors">
+        <div className="flex items-center gap-2 bg-obsidian-850/80 rounded-2xl px-3.5 py-2 border border-white/[0.08] focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-500 transition-all">
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="text-slate-400 hover:text-white p-1 rounded-lg transition-colors"
-            title="Attach file (Direct P2P Transfer)"
+            className="text-obsidian-400 hover:text-white p-1 rounded-lg transition-colors"
+            title="Attach file (P2P Transfer)"
           >
             <Paperclip className="w-4 h-4" />
           </button>
@@ -222,7 +222,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
           <button
             type="button"
             onClick={() => setShowEmojiPicker((prev) => !prev)}
-            className="text-slate-400 hover:text-white p-1 rounded-lg transition-colors"
+            className="text-obsidian-400 hover:text-white p-1 rounded-lg transition-colors"
             title="Quick emoji"
           >
             <Smile className="w-4 h-4" />
@@ -233,15 +233,15 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             placeholder="Type a message..."
-            className="flex-1 bg-transparent border-none text-sm text-white placeholder-slate-400 focus:outline-none"
+            className="flex-1 bg-transparent border-none text-sm text-white placeholder-obsidian-500 focus:outline-none"
           />
 
           <button
             type="submit"
             disabled={!inputText.trim()}
-            className="p-1.5 rounded-lg bg-brand-600 text-white disabled:opacity-40 disabled:hover:bg-brand-600 hover:bg-brand-500 transition-colors"
+            className="p-2 rounded-xl bg-brand-600 text-white disabled:opacity-30 disabled:hover:bg-brand-600 hover:bg-brand-500 transition-colors shadow-sm"
           >
-            <Send className="w-4 h-4" />
+            <Send className="w-3.5 h-3.5" />
           </button>
         </div>
       </form>

@@ -430,35 +430,35 @@ export const MeetingRoom: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen w-screen bg-[#0A0D14] overflow-hidden select-none">
+    <div className="flex flex-col h-screen w-screen bg-obsidian-950 text-obsidian-100 overflow-hidden select-none bg-radial-mesh">
       {/* Top Header Bar */}
-      <header className="flex items-center justify-between px-6 py-3 bg-slate-900/60 backdrop-blur-md border-b border-slate-800/80 z-20">
+      <header className="flex items-center justify-between px-6 py-3.5 bg-obsidian-950/70 backdrop-blur-2xl border-b border-white/[0.06] z-20">
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center font-bold text-white shadow-lg shadow-brand-500/20">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-brand-600 to-sky-500 flex items-center justify-center font-black text-white shadow-lg shadow-brand-500/20 border border-white/20">
               N
             </div>
             <span className="font-extrabold text-white text-base tracking-tight">NexusMeet</span>
           </div>
 
-          <div className="h-4 w-[1px] bg-slate-700 mx-1 hidden sm:block" />
+          <div className="h-4 w-[1px] bg-white/[0.1] mx-1 hidden sm:block" />
 
           {/* Meeting Room Code Pill */}
           <button
             onClick={handleCopyLink}
-            className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-xs font-mono text-slate-300 transition-colors"
+            className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-obsidian-850/80 hover:bg-obsidian-800 border border-white/[0.08] text-xs font-mono text-obsidian-200 transition-all active:scale-95 shadow-sm"
             title="Click to copy invite link"
           >
             <span>{code}</span>
-            {linkCopied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-slate-400" />}
+            {linkCopied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-obsidian-400" />}
           </button>
         </div>
 
         {/* Security Indicator */}
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium">
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span className="hidden md:inline">DTLS-SRTP Encrypted</span>
+            <span className="hidden md:inline">DTLS-SRTP Protected</span>
           </div>
         </div>
       </header>

@@ -380,15 +380,15 @@ export const WhiteboardPanel: React.FC<WhiteboardPanelProps> = ({
   };
 
   return (
-    <div className="relative flex flex-col h-full w-full bg-[#0d131f] rounded-2xl border border-slate-800 overflow-hidden shadow-2xl">
+    <div className="relative flex flex-col h-full w-full bg-obsidian-950 rounded-2xl sm:rounded-3xl border border-white/[0.08] overflow-hidden shadow-2xl">
       {/* Top Floating Whiteboard Bar */}
       <div className="absolute top-4 left-4 right-4 z-20 flex flex-wrap items-center justify-between gap-3 pointer-events-none">
-        {/* Tools Palette */}
-        <div className="flex items-center gap-1.5 p-1.5 rounded-xl bg-slate-900/90 backdrop-blur-md border border-slate-700/60 shadow-lg pointer-events-auto">
+        {/* Tools Palette Island */}
+        <div className="flex items-center gap-1 p-1.5 rounded-2xl glass-dock shadow-xl pointer-events-auto">
           <button
             onClick={() => setTool('brush')}
-            className={`p-2 rounded-lg transition-colors ${
-              tool === 'brush' ? 'bg-brand-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'
+            className={`p-2.5 rounded-xl transition-all ${
+              tool === 'brush' ? 'bg-brand-600 text-white shadow-md' : 'text-obsidian-300 hover:text-white hover:bg-white/[0.08]'
             }`}
             title="Brush"
           >
@@ -396,8 +396,8 @@ export const WhiteboardPanel: React.FC<WhiteboardPanelProps> = ({
           </button>
           <button
             onClick={() => setTool('highlighter')}
-            className={`p-2 rounded-lg transition-colors ${
-              tool === 'highlighter' ? 'bg-brand-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'
+            className={`p-2.5 rounded-xl transition-all ${
+              tool === 'highlighter' ? 'bg-brand-600 text-white shadow-md' : 'text-obsidian-300 hover:text-white hover:bg-white/[0.08]'
             }`}
             title="Highlighter"
           >
@@ -405,8 +405,8 @@ export const WhiteboardPanel: React.FC<WhiteboardPanelProps> = ({
           </button>
           <button
             onClick={() => setTool('line')}
-            className={`p-2 rounded-lg transition-colors ${
-              tool === 'line' ? 'bg-brand-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'
+            className={`p-2.5 rounded-xl transition-all ${
+              tool === 'line' ? 'bg-brand-600 text-white shadow-md' : 'text-obsidian-300 hover:text-white hover:bg-white/[0.08]'
             }`}
             title="Line"
           >
@@ -414,8 +414,8 @@ export const WhiteboardPanel: React.FC<WhiteboardPanelProps> = ({
           </button>
           <button
             onClick={() => setTool('arrow')}
-            className={`p-2 rounded-lg transition-colors ${
-              tool === 'arrow' ? 'bg-brand-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'
+            className={`p-2.5 rounded-xl transition-all ${
+              tool === 'arrow' ? 'bg-brand-600 text-white shadow-md' : 'text-obsidian-300 hover:text-white hover:bg-white/[0.08]'
             }`}
             title="Arrow"
           >
@@ -423,8 +423,8 @@ export const WhiteboardPanel: React.FC<WhiteboardPanelProps> = ({
           </button>
           <button
             onClick={() => setTool('rect')}
-            className={`p-2 rounded-lg transition-colors ${
-              tool === 'rect' ? 'bg-brand-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'
+            className={`p-2.5 rounded-xl transition-all ${
+              tool === 'rect' ? 'bg-brand-600 text-white shadow-md' : 'text-obsidian-300 hover:text-white hover:bg-white/[0.08]'
             }`}
             title="Rectangle"
           >
@@ -432,8 +432,8 @@ export const WhiteboardPanel: React.FC<WhiteboardPanelProps> = ({
           </button>
           <button
             onClick={() => setTool('circle')}
-            className={`p-2 rounded-lg transition-colors ${
-              tool === 'circle' ? 'bg-brand-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'
+            className={`p-2.5 rounded-xl transition-all ${
+              tool === 'circle' ? 'bg-brand-600 text-white shadow-md' : 'text-obsidian-300 hover:text-white hover:bg-white/[0.08]'
             }`}
             title="Circle"
           >
@@ -441,8 +441,8 @@ export const WhiteboardPanel: React.FC<WhiteboardPanelProps> = ({
           </button>
           <button
             onClick={() => setTool('text')}
-            className={`p-2 rounded-lg transition-colors ${
-              tool === 'text' ? 'bg-brand-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'
+            className={`p-2.5 rounded-xl transition-all ${
+              tool === 'text' ? 'bg-brand-600 text-white shadow-md' : 'text-obsidian-300 hover:text-white hover:bg-white/[0.08]'
             }`}
             title="Add Text"
           >
@@ -450,15 +450,15 @@ export const WhiteboardPanel: React.FC<WhiteboardPanelProps> = ({
           </button>
           <button
             onClick={() => setTool('eraser')}
-            className={`p-2 rounded-lg transition-colors ${
-              tool === 'eraser' ? 'bg-brand-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'
+            className={`p-2.5 rounded-xl transition-all ${
+              tool === 'eraser' ? 'bg-brand-600 text-white shadow-md' : 'text-obsidian-300 hover:text-white hover:bg-white/[0.08]'
             }`}
             title="Eraser"
           >
             <Eraser className="w-4 h-4" />
           </button>
 
-          <div className="w-[1px] h-6 bg-slate-700 mx-1" />
+          <div className="w-[1px] h-6 bg-white/[0.1] mx-1" />
 
           {/* Stroke Widths */}
           <div className="flex items-center gap-1">
@@ -466,29 +466,29 @@ export const WhiteboardPanel: React.FC<WhiteboardPanelProps> = ({
               <button
                 key={width}
                 onClick={() => setStrokeWidth(width)}
-                className={`w-7 h-7 flex items-center justify-center rounded-lg transition-colors ${
-                  strokeWidth === width ? 'bg-slate-800 border border-brand-500' : 'hover:bg-slate-800/60'
+                className={`w-7 h-7 flex items-center justify-center rounded-xl transition-all ${
+                  strokeWidth === width ? 'bg-obsidian-700 ring-1 ring-brand-500 shadow-sm' : 'hover:bg-white/[0.08]'
                 }`}
                 title={`Stroke ${width}px`}
               >
                 <div
                   className="rounded-full bg-white"
-                  style={{ width: `${Math.min(16, width + 2)}px`, height: `${Math.min(16, width + 2)}px` }}
+                  style={{ width: `${Math.min(14, width + 2)}px`, height: `${Math.min(14, width + 2)}px` }}
                 />
               </button>
             ))}
           </div>
 
-          <div className="w-[1px] h-6 bg-slate-700 mx-1" />
+          <div className="w-[1px] h-6 bg-white/[0.1] mx-1" />
 
           {/* Color Palette */}
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5 px-1">
             {COLORS.slice(0, 6).map((c) => (
               <button
                 key={c}
                 onClick={() => setColor(c)}
-                className={`w-6 h-6 rounded-full transition-transform ${
-                  color === c ? 'scale-125 ring-2 ring-white ring-offset-2 ring-offset-slate-900' : 'opacity-80 hover:opacity-100 hover:scale-110'
+                className={`w-5 h-5 rounded-full transition-transform ${
+                  color === c ? 'scale-125 ring-2 ring-white ring-offset-2 ring-offset-obsidian-950' : 'opacity-80 hover:opacity-100 hover:scale-110'
                 }`}
                 style={{ backgroundColor: c }}
               />
@@ -497,11 +497,11 @@ export const WhiteboardPanel: React.FC<WhiteboardPanelProps> = ({
         </div>
 
         {/* Action Controls (Undo, Redo, Clear, Save, Maximize, Close) */}
-        <div className="flex items-center gap-1.5 p-1.5 rounded-xl bg-slate-900/90 backdrop-blur-md border border-slate-700/60 shadow-lg pointer-events-auto">
+        <div className="flex items-center gap-1 p-1.5 rounded-2xl glass-dock shadow-xl pointer-events-auto">
           <button
             onClick={handleUndo}
             disabled={history.length === 0}
-            className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 disabled:opacity-40"
+            className="p-2.5 rounded-xl text-obsidian-300 hover:text-white hover:bg-white/[0.08] disabled:opacity-30 transition-all"
             title="Undo"
           >
             <Undo2 className="w-4 h-4" />
@@ -509,36 +509,36 @@ export const WhiteboardPanel: React.FC<WhiteboardPanelProps> = ({
           <button
             onClick={handleRedo}
             disabled={redoStack.length === 0}
-            className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 disabled:opacity-40"
+            className="p-2.5 rounded-xl text-obsidian-300 hover:text-white hover:bg-white/[0.08] disabled:opacity-30 transition-all"
             title="Redo"
           >
             <Redo2 className="w-4 h-4" />
           </button>
           <button
             onClick={handleClear}
-            className="p-2 rounded-lg text-rose-400 hover:text-rose-300 hover:bg-rose-500/10"
+            className="p-2.5 rounded-xl text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 transition-all"
             title="Clear Board"
           >
             <Trash2 className="w-4 h-4" />
           </button>
           <button
             onClick={handleDownload}
-            className="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800"
-            title="Export as PNG"
+            className="p-2.5 rounded-xl text-obsidian-200 hover:text-white hover:bg-white/[0.08] transition-all"
+            title="Export PNG"
           >
             <Download className="w-4 h-4" />
           </button>
-          <div className="w-[1px] h-6 bg-slate-700 mx-1" />
+          <div className="w-[1px] h-6 bg-white/[0.1] mx-1" />
           <button
             onClick={onToggleMaximize}
-            className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+            className="p-2.5 rounded-xl text-obsidian-300 hover:text-white hover:bg-white/[0.08] transition-all"
             title={isMaximized ? 'Restore View' : 'Maximize Whiteboard'}
           >
             {isMaximized ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
           </button>
           <button
             onClick={onClose}
-            className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+            className="p-2.5 rounded-xl text-obsidian-300 hover:text-white hover:bg-white/[0.08] transition-all"
             title="Close Whiteboard"
           >
             <X className="w-4 h-4" />

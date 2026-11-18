@@ -29,44 +29,44 @@ export const ParticipantsPanel: React.FC<ParticipantsPanelProps> = ({
   const handRaisedParticipants = participants.filter((p) => p.isHandRaised);
 
   return (
-    <div className="flex flex-col h-full w-full bg-slate-900 border-l border-slate-800 shadow-2xl">
+    <div className="flex flex-col h-full w-full glass-panel border-l border-white/[0.08] shadow-2xl overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-slate-800 bg-slate-900/80 backdrop-blur-md">
+      <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.06] bg-obsidian-900/60 backdrop-blur-xl">
         <div>
-          <h3 className="font-semibold text-white text-base">Participants ({participants.length})</h3>
-          <p className="text-xs text-slate-400">Meeting Room: {roomCode}</p>
+          <h3 className="font-bold text-white text-sm tracking-wide">Participants ({participants.length})</h3>
+          <p className="text-[11px] font-mono text-obsidian-400">Room: {roomCode}</p>
         </div>
         <button
           onClick={onClose}
-          className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+          className="p-2 rounded-xl text-obsidian-400 hover:text-white hover:bg-white/[0.06] transition-colors"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
       </div>
 
       {/* Copy Invite Link Card */}
-      <div className="p-4 border-b border-slate-800 bg-slate-900/50">
+      <div className="p-4 border-b border-white/[0.06] bg-obsidian-950/40">
         <button
           onClick={handleCopyLink}
-          className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-brand-600/10 hover:bg-brand-600/20 text-brand-400 border border-brand-500/20 transition-all font-medium text-xs"
+          className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-brand-600/10 hover:bg-brand-600/20 text-brand-300 border border-brand-500/25 transition-all font-semibold text-xs shadow-sm active:scale-98"
         >
           {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-          <span>{copied ? 'Invite Link Copied!' : 'Copy Meeting Invite Link'}</span>
+          <span>{copied ? 'Invite Link Copied to Clipboard!' : 'Copy Meeting Invite Link'}</span>
         </button>
       </div>
 
       {/* Raised Hands Queue */}
       {handRaisedParticipants.length > 0 && (
-        <div className="px-4 py-3 bg-amber-500/10 border-b border-amber-500/20">
-          <div className="flex items-center gap-1.5 text-xs font-semibold text-amber-400 mb-2">
+        <div className="px-5 py-3 bg-amber-500/10 border-b border-amber-500/20">
+          <div className="flex items-center gap-1.5 text-xs font-bold text-amber-400 mb-2">
             <Hand className="w-4 h-4" />
             <span>Hands Raised ({handRaisedParticipants.length})</span>
           </div>
           <div className="space-y-1.5">
             {handRaisedParticipants.map((p) => (
-              <div key={p.socketId} className="flex items-center justify-between text-xs text-slate-300">
-                <span className="truncate">{p.name}</span>
-                <span className="text-[10px] text-amber-400/80">waiting to speak</span>
+              <div key={p.socketId} className="flex items-center justify-between text-xs text-obsidian-200">
+                <span className="truncate font-medium">{p.name}</span>
+                <span className="text-[10px] font-mono text-amber-400/90">waiting to speak</span>
               </div>
             ))}
           </div>
@@ -81,32 +81,32 @@ export const ParticipantsPanel: React.FC<ParticipantsPanelProps> = ({
           return (
             <div
               key={p.socketId}
-              className="flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-800/60 transition-colors border border-transparent hover:border-slate-800"
+              className="flex items-center justify-between p-3 rounded-2xl hover:bg-white/[0.04] transition-colors border border-transparent hover:border-white/[0.06]"
             >
               <div className="flex items-center gap-3 overflow-hidden">
                 <div
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white uppercase flex-shrink-0"
-                  style={{ backgroundColor: p.avatar || '#6366f1' }}
+                  className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold text-white uppercase flex-shrink-0 shadow-md ring-2 ring-white/[0.08]"
+                  style={{ backgroundColor: p.avatar || '#6366F1' }}
                 >
                   {p.name.charAt(0)}
                 </div>
 
                 <div className="overflow-hidden">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-sm font-medium text-white truncate">{p.name}</span>
+                    <span className="text-sm font-semibold text-white truncate">{p.name}</span>
                     {isMe && (
-                      <span className="text-[10px] text-brand-400 font-semibold px-1.5 py-0.2 rounded bg-brand-500/10">
+                      <span className="text-[10px] text-brand-300 font-bold px-1.5 py-0.2 rounded bg-brand-500/20 border border-brand-500/30">
                         You
                       </span>
                     )}
                     {p.isHost && (
-                      <span className="flex items-center gap-0.5 text-[10px] text-emerald-400 font-semibold px-1.5 py-0.2 rounded bg-emerald-500/10">
+                      <span className="flex items-center gap-0.5 text-[10px] text-emerald-400 font-bold px-1.5 py-0.2 rounded bg-emerald-500/10 border border-emerald-500/20">
                         <ShieldCheck className="w-3 h-3" /> Host
                       </span>
                     )}
                   </div>
                   {p.isHandRaised && (
-                    <span className="text-[10px] text-amber-400 flex items-center gap-1">
+                    <span className="text-[10px] text-amber-400 flex items-center gap-1 font-medium mt-0.5">
                       <Hand className="w-3 h-3" /> Raised Hand
                     </span>
                   )}
@@ -114,17 +114,25 @@ export const ParticipantsPanel: React.FC<ParticipantsPanelProps> = ({
               </div>
 
               {/* Media Status Icons */}
-              <div className="flex items-center gap-1.5 text-slate-400">
+              <div className="flex items-center gap-2 text-obsidian-400">
                 {p.isMuted ? (
-                  <MicOff className="w-4 h-4 text-rose-400" />
+                  <div className="w-7 h-7 rounded-lg bg-rose-500/10 flex items-center justify-center text-rose-400 border border-rose-500/20">
+                    <MicOff className="w-3.5 h-3.5" />
+                  </div>
                 ) : (
-                  <Mic className="w-4 h-4 text-emerald-400" />
+                  <div className="w-7 h-7 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 border border-emerald-500/20">
+                    <Mic className="w-3.5 h-3.5" />
+                  </div>
                 )}
 
                 {p.isVideoOff ? (
-                  <VideoOff className="w-4 h-4 text-rose-400" />
+                  <div className="w-7 h-7 rounded-lg bg-rose-500/10 flex items-center justify-center text-rose-400 border border-rose-500/20">
+                    <VideoOff className="w-3.5 h-3.5" />
+                  </div>
                 ) : (
-                  <Video className="w-4 h-4 text-emerald-400" />
+                  <div className="w-7 h-7 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 border border-emerald-500/20">
+                    <Video className="w-3.5 h-3.5" />
+                  </div>
                 )}
               </div>
             </div>
