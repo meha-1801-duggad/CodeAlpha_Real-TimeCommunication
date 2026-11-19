@@ -1,6 +1,10 @@
 # NexusMeet 🚀
 ### Enterprise-Grade Real-Time Video Conferencing & Collaboration Platform
 
+> 🌐 **Live Website Demo**: [https://meha-1801-duggad.github.io/CodeAlpha_Real-TimeCommunication/](https://meha-1801-duggad.github.io/CodeAlpha_Real-TimeCommunication/)  
+> 📦 **GitHub Repository**: [https://github.com/meha-1801-duggad/CodeAlpha_Real-TimeCommunication](https://github.com/meha-1801-duggad/CodeAlpha_Real-TimeCommunication)
+
+[![Live Demo](https://img.shields.io/badge/Demo-Live%20Website-success?style=for-the-badge&logo=githubpages&logoColor=white)](https://meha-1801-duggad.github.io/CodeAlpha_Real-TimeCommunication/)
 [![Node.js](https://img.shields.io/badge/Node.js-v20%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.4-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
