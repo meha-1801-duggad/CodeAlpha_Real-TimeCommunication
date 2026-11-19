@@ -10,6 +10,7 @@ interface ChatPanelProps {
   messages: ChatMessage[];
   onClose: () => void;
   onSendFile: (file: File) => void;
+  onSendMessage?: (text: string) => void;
 }
 
 const QUICK_EMOJIS = ['👍', '👏', '❤️', '🎉', '😂', '🔥', '🚀', '💡'];
@@ -21,6 +22,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
   messages,
   onClose,
   onSendFile,
+  onSendMessage,
 }) => {
   const [inputText, setInputText] = useState('');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -34,12 +36,17 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
 
   const handleSendMessage = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
-    if (!inputText.trim() || !socket) return;
+    const trimmed = inputText.trim();
+    if (!trimmed) return;
 
-    socket.emit('chat-message', {
-      roomCode,
-      text: inputText.trim(),
-    });
+    if (onSendMessage) {
+      onSendMessage(trimmed);
+    } else if (socket) {
+      socket.emit('chat-message', {
+        roomCode,
+        text: trimmed,
+      });
+    }
 
     setInputText('');
     setShowEmojiPicker(false);

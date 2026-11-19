@@ -319,8 +319,41 @@ export const MeetingRoom: React.FC = () => {
 
   // Reaction send
   const handleSendReaction = (emoji: string) => {
-    if (socket) {
+    const rx: ReactionEvent = {
+      id: `rx_${Date.now()}_${Math.random()}`,
+      senderName: effectiveMyParticipant.name,
+      emoji,
+      timestamp: Date.now(),
+    };
+    setReactions((prev) => [...prev, rx]);
+    setTimeout(() => {
+      setReactions((prev) => prev.filter((r) => r.id !== rx.id));
+    }, 2500);
+
+    if (socket && isConnected) {
       socket.emit('send-reaction', { emoji });
+    }
+  };
+
+  // Chat message send handler
+  const handleSendMessage = (text: string) => {
+    const newMsg: ChatMessage = {
+      id: `msg_${Date.now()}`,
+      roomId: code || '',
+      senderId: effectiveMyParticipant.userId,
+      senderName: effectiveMyParticipant.name,
+      senderAvatar: effectiveMyParticipant.avatar,
+      text,
+      timestamp: Date.now(),
+    };
+
+    if (socket && isConnected) {
+      socket.emit('chat-message', {
+        roomCode: code,
+        text,
+      });
+    } else {
+      setChatMessages((prev) => [...prev, newMsg]);
     }
   };
 
@@ -333,9 +366,10 @@ export const MeetingRoom: React.FC = () => {
     reader.onload = () => {
       const dataUrl = reader.result as string;
 
-      // Broadcast file info into room chat
-      if (socket) {
+      if (socket && isConnected) {
+        // Broadcast file info into room chat
         socket.emit('chat-message', {
+          roomCode: code,
           text: `Shared file: ${file.name}`,
           file: {
             name: file.name,
@@ -344,6 +378,23 @@ export const MeetingRoom: React.FC = () => {
             dataUrl,
           },
         });
+      } else {
+        const fileMsg: ChatMessage = {
+          id: `file_${Date.now()}`,
+          roomId: code || '',
+          senderId: effectiveMyParticipant.userId,
+          senderName: effectiveMyParticipant.name,
+          senderAvatar: effectiveMyParticipant.avatar,
+          text: `Shared file: ${file.name}`,
+          timestamp: Date.now(),
+          file: {
+            name: file.name,
+            size: file.size,
+            type: file.type,
+            dataUrl,
+          },
+        };
+        setChatMessages((prev) => [...prev, fileMsg]);
       }
 
       // Also transmit binary slices directly through WebRTC DataChannels!
@@ -542,6 +593,7 @@ export const MeetingRoom: React.FC = () => {
               messages={chatMessages}
               onClose={() => setIsChatOpen(false)}
               onSendFile={handleSendFile}
+              onSendMessage={handleSendMessage}
             />
           </aside>
         )}
